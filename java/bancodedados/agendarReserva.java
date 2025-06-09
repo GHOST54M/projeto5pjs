@@ -8,11 +8,11 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.util.Random;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/agendarReserva")
 public class agendarReserva extends HttpServlet {
@@ -25,10 +25,10 @@ public class agendarReserva extends HttpServlet {
         int numeroPessoas = Integer.parseInt(request.getParameter("quantidadePessoas"));
         String nomeReserva = request.getParameter("nomeReserva");
         String horarioStr = request.getParameter("horarioReserva");
+        String restauranteId = request.getParameter("id");
 
         // Dados fixos ou gerados
-        int clienteId = 1; // Exemplo estático (você pode adaptar conforme login)
-        int restauranteId = 1; // Também exemplo, adapte conforme necessário
+        int clienteId = (int) request.getSession().getAttribute("userId");
         Date dataReserva = Date.valueOf(LocalDate.now());
         Time horarioReserva = Time.valueOf(horarioStr + ":00"); // adiciona os segundos
         String codigoConfirmacao = gerarCodigoConfirmacao();
@@ -43,7 +43,7 @@ public class agendarReserva extends HttpServlet {
                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             stmt = con.prepareStatement(sql);
             stmt.setInt(1, clienteId);
-            stmt.setInt(2, restauranteId);
+            stmt.setString(2, restauranteId);
             stmt.setDate(3, dataReserva);
             stmt.setTime(4, horarioReserva);
             stmt.setInt(5, numeroPessoas);
@@ -54,7 +54,7 @@ public class agendarReserva extends HttpServlet {
             stmt.executeUpdate();
 
             // Redireciona ou exibe confirmação
-            response.sendRedirect("reserva_sucesso.jsp");
+            response.sendRedirect("visualizar_reserva.jsp");
 
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

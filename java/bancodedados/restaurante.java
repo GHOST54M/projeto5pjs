@@ -4,6 +4,7 @@ public class restaurante {
     private int restauranteId;
     private String nome;
     private int capacidadeMaxima;
+	private int lotacao;
     private int maxReserva;
     private String especialidadeGastronomica;
     private String email;
@@ -19,12 +20,13 @@ public class restaurante {
     private String fotoPerfil;
 
     // Construtor
-    public restaurante(int restauranteId, String nome, int capacidadeMaxima, int maxReserva, String especialidadeGastronomica,
+    public restaurante(int restauranteId, String nome, int capacidadeMaxima,int lotacao, int maxReserva, String especialidadeGastronomica,
                        String email, String cnpj, String municipio, String uf, String rua, int numero, int cep,
                        String descricao, String telefone1, String telefone2, String fotoPerfil) {
         this.restauranteId = restauranteId;
         this.nome = nome;
         this.capacidadeMaxima = capacidadeMaxima;
+        this.lotacao = lotacao;
         this.maxReserva = maxReserva;
         this.especialidadeGastronomica = especialidadeGastronomica;
         this.email = email;
@@ -64,6 +66,15 @@ public class restaurante {
     public void setCapacidadeMaxima(int capacidadeMaxima) {
         this.capacidadeMaxima = capacidadeMaxima;
     }
+    
+    public int getLotacao() {
+		return lotacao;
+	}
+
+
+	public void setLotacao(int lotacao) {
+		this.lotacao = lotacao;
+	}
 
     public int getMaxReserva() {
         return maxReserva;

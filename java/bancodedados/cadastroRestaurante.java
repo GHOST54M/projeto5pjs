@@ -44,6 +44,7 @@ public class cadastroRestaurante extends HttpServlet {
 
         int capacidade = Integer.parseInt(request.getParameter("capacidade"));
         int maxReserva = Integer.parseInt(request.getParameter("max_reserva"));
+        int lotacao = 0;
 
         // Processa o upload da imagem
         Part filePart = request.getPart("foto");
@@ -63,24 +64,25 @@ public class cadastroRestaurante extends HttpServlet {
         try {
             conn = cnx.getConexao();
 
-            String sqlRest = "INSERT INTO restaurantes (nome, cnpj, telefone1, telefone2, capacidade_maxima, max_reserva, especialidade_gastronomica, email, senha, municipio, uf,rua, numero, cep, descricao, foto_perfil) VALUES (?, ?, ?, ?,?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlRest = "INSERT INTO restaurantes (nome, cnpj, telefone1, telefone2, capacidade_maxima,lotacao, max_reserva, especialidade_gastronomica, email, senha, municipio, uf,rua, numero, cep, descricao, foto_perfil) VALUES (?, ?, ?, ?,?,?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
             stmtRest = conn.prepareStatement(sqlRest, Statement.RETURN_GENERATED_KEYS);
             stmtRest.setString(1, nome);
             stmtRest.setString(2, cnpj);
             stmtRest.setString(3, telefone1);
             stmtRest.setString(4, telefone2);
             stmtRest.setInt(5, capacidade);
-            stmtRest.setInt(6, maxReserva);
-            stmtRest.setString(7, String.join(", ", especialidades));
-            stmtRest.setString(8, email);
-            stmtRest.setString(9, senha);
-            stmtRest.setString(10, municipio);
-            stmtRest.setString(11, uf);
-            stmtRest.setString(12, rua);
-            stmtRest.setString(13, numero);
-            stmtRest.setString(14, cep);
-            stmtRest.setString(15, descricao);
-            stmtRest.setString(16, caminhoFoto);
+            stmtRest.setInt(6, lotacao);
+            stmtRest.setInt(7, maxReserva);
+            stmtRest.setString(8, String.join(", ", especialidades));
+            stmtRest.setString(9, email);
+            stmtRest.setString(10, senha);
+            stmtRest.setString(11, municipio);
+            stmtRest.setString(12, uf);
+            stmtRest.setString(13, rua);
+            stmtRest.setString(14, numero);
+            stmtRest.setString(15, cep);
+            stmtRest.setString(16, descricao);
+            stmtRest.setString(17, caminhoFoto);
             stmtRest.executeUpdate();
 
             ResultSet rs = stmtRest.getGeneratedKeys();
