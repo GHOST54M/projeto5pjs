@@ -138,13 +138,14 @@
 			 </div>
 		 
 			 <div class="area_reserva">
-	    		<form action="reservarServlet" method="post">
+	    		<form action="agendarReserva" method="post">
 		            <label>Reserva para</label>
 		            <input type="number" name="quantidadePessoas" min="1" required class="input-inline" />
 		            pessoas.
 		            <span>Nome na reserva</span>
 		            <input type="text" name="nomeReserva" required />
 		        
+		    		<input type="hidden" name="id" value="<%= r.getRestauranteId() %>">
 		
 		  
 		            <label>Horário reserva</label>

@@ -138,7 +138,7 @@
 
 	<section class="barra_de_pesquisa">
 	<div class="container">
-		<form action="#">
+		<form action="buscarRestaurantePorNome">
 			<input type="text" name="pesquisa" class="barra" placeholder="Procurar restaurante...">
 		</form>
 	</div>
@@ -146,25 +146,41 @@
 	
 	<section class="classificar_por_culinaria">
 	  <div class="container">
-			<div class="card">
+	  
+				<div class="card">
 			      <h2>Comida brasileira</h2>
 			      <img src="imagens/culinariaBrasileira.png" alt="Comida brasileira">
-			      <button>Ver restaurantes</button>
+				  <form action="procurarRestaurantePorGastronomia" method="post">
+				  <input type="hidden" name="especialidade" value="Brasileira">
+				  <button type="submit">Ver restaurantes</button>
+				</form>
 			    </div>
+			    
 			    <div class="card">
 			      <h2>Comida italiana</h2>
 			      <img src="imagens/culinariaBrasileira.png" alt="Comida italiana">
-			      <button>Ver restaurantes</button>
+			      <form action="procurarRestaurantePorGastronomia" method="post">
+				  <input type="hidden" name="especialidade" value="Italiana">
+				  <button type="submit">Ver restaurantes</button>
+				  </form>
 			    </div>
+			    
 			    <div class="card">
 			      <h2>Comida árabe</h2>
 			      <img src="imagens/culinariaBrasileira.png" alt="Comida árabe">
-			      <button>Ver restaurantes</button>
-			    </div>
+				  <form action="procurarRestaurantePorGastronomia" method="post">
+				  <input type="hidden" name="especialidade" value="Árabe">
+				  <button type="submit">Ver restaurantes</button>
+				  </form>			    
+				</div>
+			    
 			    <div class="card">
 			      <h2>Comida japonesa</h2>
 			      <img src="imagens/culinariaBrasileira.png" alt="Comida japonesa">
-			      <button>Ver restaurantes</button>
+				  <form action="procurarRestaurantePorGastronomia" method="post">
+				  <input type="hidden" name="especialidade" value="Japonesa">
+				  <button type="submit">Ver restaurantes</button>
+				  </form>			      
 			  </div>
 		  </div>
 	</section>
@@ -188,6 +204,7 @@
 			</section>
 	</section>
 	<section class="classificar_por_ultimos_restaurantes">
+	<a href="visualizar_reserva.jsp">reserva</a>
 	<a href="logout">Sair</a>
 	
 	</section>
