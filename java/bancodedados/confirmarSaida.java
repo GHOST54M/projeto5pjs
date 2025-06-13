@@ -52,7 +52,7 @@ public class confirmarSaida extends HttpServlet {
                 psDelete.executeUpdate();
             }
 
-            response.sendRedirect("paginaPrincipalReserva.jsp"); // página de confirmação
+            response.sendRedirect("paginaPrincipalRestaurante.jsp"); // página de confirmação
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("erro.jsp"); // página de erro

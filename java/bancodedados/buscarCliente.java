@@ -21,6 +21,8 @@ public class buscarCliente {
                     cliente.setNome(rs.getString("nome"));
                     cliente.setTelefone(rs.getString("telefone"));
                     cliente.setEmail(rs.getString("email"));
+                    cliente.setRua(rs.getString("rua"));
+                    cliente.setCep(rs.getString("cep"));
                 }
             }
         }

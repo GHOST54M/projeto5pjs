@@ -1,8 +1,10 @@
 package bancodedados;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
@@ -15,7 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class cadastroCliente extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -23,18 +25,36 @@ public class cadastroCliente extends HttpServlet {
         String telefone = request.getParameter("telefone");
         String email = request.getParameter("email");
         String senha = request.getParameter("senha");
+        String rua = request.getParameter("rua");
+        String cep = request.getParameter("cep");
 
-        String sql = "INSERT INTO Clientes (nome, telefone, email, senha) VALUES (?, ?, ?, ?)";
+        String verificaEmailSQL = "SELECT COUNT(*) FROM Clientes WHERE email = ?";
+        String inserirClienteSQL = "INSERT INTO Clientes (nome, telefone, email, senha, rua, cep) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = cnx.getConexao();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = cnx.getConexao()) {
 
-            stmt.setString(1, nome);
-            stmt.setString(2, telefone);
-            stmt.setString(3, email);
-            stmt.setString(4, senha);
+            // Verifica se o e-mail já existe
+            try (PreparedStatement stmtVerifica = conn.prepareStatement(verificaEmailSQL)) {
+                stmtVerifica.setString(1, email);
+                ResultSet rs = stmtVerifica.executeQuery();
 
-            stmt.executeUpdate();
+                if (rs.next() && rs.getInt(1) > 0) {
+                	response.sendRedirect("cadastroCliente.jsp?erro=" + URLEncoder.encode("Email já está cadastrado", "UTF-8"));
+                    return; // Encerra a execução
+                }
+            }
+
+            // Insere o novo cliente
+            try (PreparedStatement stmtInserir = conn.prepareStatement(inserirClienteSQL)) {
+                stmtInserir.setString(1, nome);
+                stmtInserir.setString(2, telefone);
+                stmtInserir.setString(3, email);
+                stmtInserir.setString(4, senha);
+                stmtInserir.setString(5, rua);
+                stmtInserir.setString(6, cep);
+
+                stmtInserir.executeUpdate();
+            }
 
             response.sendRedirect("login_cliente.jsp");
 
@@ -48,3 +68,4 @@ public class cadastroCliente extends HttpServlet {
         }
     }
 }
+

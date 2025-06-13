@@ -48,14 +48,22 @@ public class cadastroRestaurante extends HttpServlet {
 
         // Processa o upload da imagem
         Part filePart = request.getPart("foto");
-        String nomeArquivo = filePart.getSubmittedFileName();
+        String nomeArquivo = (filePart != null && filePart.getSubmittedFileName() != null && !filePart.getSubmittedFileName().isEmpty())
+            ? filePart.getSubmittedFileName()
+            : "padrao.png";
 
-        String caminhoUpload = getServletContext().getRealPath("/") + "uploads";
-        File uploadDir = new File(caminhoUpload);
-        if (!uploadDir.exists()) uploadDir.mkdir();
-        String caminhoCompleto = caminhoUpload + File.separator + nomeArquivo;
-        filePart.write(caminhoCompleto);
+        // Se não for "padrao.png", salva o arquivo
+        if (!nomeArquivo.equals("padrao.png")) {
+            String caminhoUpload = getServletContext().getRealPath("/") + "uploads";
+            File uploadDir = new File(caminhoUpload);
+            if (!uploadDir.exists()) uploadDir.mkdir();
+
+            String caminhoCompleto = caminhoUpload + File.separator + nomeArquivo;
+            filePart.write(caminhoCompleto);
+        }
+
         String caminhoFoto = "uploads/" + nomeArquivo;
+
 
         Connection conn = null;
         PreparedStatement stmtRest = null;
@@ -63,6 +71,23 @@ public class cadastroRestaurante extends HttpServlet {
 
         try {
             conn = cnx.getConexao();
+            
+            String sqlVerificaCnpj = "SELECT COUNT(*) FROM restaurantes WHERE cnpj = ?";
+            PreparedStatement stmtVerifica = conn.prepareStatement(sqlVerificaCnpj);
+            stmtVerifica.setString(1, cnpj);
+            ResultSet rsVerifica = stmtVerifica.executeQuery();
+
+            if (rsVerifica.next() && rsVerifica.getInt(1) > 0) {
+                // CNPJ já cadastrado
+                request.setAttribute("mensagemErro", "Este CNPJ já está cadastrado.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("cadastroRestaurante.jsp");
+                dispatcher.forward(request, response);
+                rsVerifica.close();
+                stmtVerifica.close();
+                return; // Encerra o método para não continuar com o INSERT
+            }
+            rsVerifica.close();
+            stmtVerifica.close();
 
             String sqlRest = "INSERT INTO restaurantes (nome, cnpj, telefone1, telefone2, capacidade_maxima,lotacao, max_reserva, especialidade_gastronomica, email, senha, municipio, uf,rua, numero, cep, descricao, foto_perfil) VALUES (?, ?, ?, ?,?,?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?, ?)";
             stmtRest = conn.prepareStatement(sqlRest, Statement.RETURN_GENERATED_KEYS);

@@ -5,7 +5,8 @@ public class cliente {
     private String nome;
     private String telefone;
     private String email;
- 
+	private String rua;
+    private String cep; 
 
     // Getters e Setters
     public int getId() {
@@ -32,5 +33,18 @@ public class cliente {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public String getRua() {
+		return rua;
+	}
+	public void setRua(String rua) {
+		this.rua = rua;
+	}
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
  
 }
