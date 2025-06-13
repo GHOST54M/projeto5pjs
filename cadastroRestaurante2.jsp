@@ -175,8 +175,11 @@
 			        <label>Máx de pessoas por reserva</label>
 			        <input type="number" name="max_reserva">
 				</section>
+				<div id="mensagens-erro" style="color: red; margin-bottom: 1em;"></div>
 				
 		        <button type="submit" class="submit-btn">Finalizar cadastro</button>
+		        <script src="javascript/validarCadastroRestaurante2.js"></script>
+		        
 		    </form>
 		</div>
 	</section>

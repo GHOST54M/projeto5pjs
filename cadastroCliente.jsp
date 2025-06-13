@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <html>
 <head>
 
@@ -9,12 +11,73 @@
 	
 		<title>Cadastro VENano</title>
 		<style>
-		
-		.formulario, .conteudo{
-		    display: flex;
-    		flex-direction: column;
-    		align-items: center;
-		}
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .conteudo {
+      display: inline-block;
+      text-align: left;
+    }
+    .back-button {
+      background-color: #771b1b;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      background-color: #5e1515;
+    }
+    
+    .formulario{
+    width: 350px;
+    }
+    
+	label {
+      font-size: 26px;
+      display: block;
+      margin-top: 20px;
+    }
+    input[type="text"], input[type="password"],input[type="number"] {
+      width: 100%;
+      padding: 14px;
+      margin-top: 5px;
+      border: 1px solid #771b1b;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(119, 27, 27, 0.3);
+	  height:18px;
+      font-size:24px;
+    }
+
+    .senha-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+	.botao-entrar {
+      background-color: #771b1b;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .botao-entrar:hover {
+      background-color: #5e1515;
+    }
+    
+   .cadastro {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
 		</style>
 </head>
 <body>
@@ -24,39 +87,48 @@
 
 <main>	
 <section class="conteudo">
-    <!-- Verifica se existe uma mensagem de erro -->
-    <%
-        String errorMessage = (String) request.getAttribute("errorMessage");
-        if (errorMessage != null) {
-    %>
-        <div style="color: red;">
-            <%= errorMessage %> <!-- Exibe a mensagem de erro -->
-        </div>
-    <%
-        }
-    %>
+
+		<% 
+		    String erro = request.getParameter("erro");
+		    if (erro != null) { 
+		%>
+		    <p style="color:red;"><%= erro %></p>
+		<% 
+		    } 
+		%>
+    			<a href="login_cliente.jsp"><button class="back-button">&#8592;</button></a>
+    
 		<form class="formulario" action="cadastroCliente" method="POST">
-		    <label for="nome">Digite seu nome:</label>
+		    <label for="nome">Nome completo</label>
 		    <input type="text" id="nome" name="nome" required>
 		
-		    <label for="email">Digite seu email:</label>
+		    <label for="email">Email</label>
 		    <input type="text" id="email" name="email" required>
 		
-		    <label for="celular">Digite seu celular:</label>
-		    <input type="number" id="celular" name="telefone" required placeholder="Digite apenas n�meros!">
-		
-		    <label for="senha">Digite sua senha:</label>
+		    <label for="celular">Celular:</label>
+		    <input type="number" id="celular" name="telefone" required placeholder="Digite apenas números!">
+		    
+		    <label for="rua">Rua</label>
+		    <input type="text" id="rua" name="rua" required>
+		    
+		    <label for="cep">CEP:</label>
+		    <input type="number" id="cep" name="cep" required placeholder="Digite apenas números!">
+		    		
+		    <label for="senha">Senha:</label>
 		    <input type="password" id="senha" name="senha" required>
 		
 		    <label for="senhaconfirmar">Confirme sua senha:</label>
 		    <input type="password" id="senhaconfirmar" name="senhaconfirmar" required>
-		
-		    <input type="submit" value="Cadastrar">
+			
+			<div class="cadastro">
+		    <input type="submit" value="Cadastrar" class="botao-entrar">
 		    
-		    <script src="validarCadastroUsuario.js"></script>
+		    <script src="javascript/validarCadastroCliente.js"></script>
+		    
+		    </div>
 		</form>
-		<a href="login_cliente.jsp">Voltar</a>
-</section>
+		</section>
+
 </main>
 
 <footer>

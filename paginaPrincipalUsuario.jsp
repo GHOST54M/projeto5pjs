@@ -15,16 +15,41 @@
 	
 		<title>Cadastro VENano</title>
 		<style>
-        header{
+    	body{
+       		font-family: Arial, sans-serif; 	
+    
+    	}
+		header {
+			position: relative;
 			display: flex;
-			flex-direction: row-reverse;
-			align-items: center;        
-        }
-		.cabecalhoimagem{
-			width: 50px;
+			justify-content: center; 
+			align-items: center;
+			height: 100px; 
+			border-bottom: 1px solid #ccc;
+		}
+		
+		header h1 {
+			margin: 0;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			color: #FFFFFF;
+			font-size: 30px;
+		}
+		
+		.cabecalho {
+			position: absolute;
+			right: 20px;
+			display: flex;
+			gap: 10px;
+		}
+		
+		.cabecalhoimagem {
+			width: 50px; 
 			height: 50px;
 			margin-right: 20px;
 		}
+
 		.formulario, .conteudo{
 		    display: flex;
     		flex-direction: column;
@@ -128,7 +153,10 @@
 <body>
 
 <header>
+	<h1>Mesa pronta</h1>
+
 	<div class="cabecalho">
+		<a href="visualizar_reserva.jsp"><img src="imagens/prato.png"  class="cabecalhoimagem"></a>		
 		<a href="perfilUsuario.jsp"><img src="imagens/perfil.png"  class="cabecalhoimagem"></a>
 		<a href=""><img src="imagens/configuracoes.png" class="cabecalhoimagem"></a>
 	</div>
@@ -204,8 +232,6 @@
 			</section>
 	</section>
 	<section class="classificar_por_ultimos_restaurantes">
-	<a href="visualizar_reserva.jsp">reserva</a>
-	<a href="logout">Sair</a>
 	
 	</section>
 

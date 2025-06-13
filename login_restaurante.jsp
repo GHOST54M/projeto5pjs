@@ -11,6 +11,7 @@
 		
 <style>
     body {
+      font-family: Arial, sans-serif; 
       text-align: center;
       margin-top: 60px;
     }
@@ -32,9 +33,13 @@
     .back-button:hover {
       background-color: #5e1515;
     }
-
+    
+    .formulario{
+    width: 350px;
+    }
+    
     label {
-      font-size: 18px;
+      font-size: 26px;
       display: block;
       margin-top: 20px;
     }
@@ -46,6 +51,8 @@
       border: 1px solid #771b1b;
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(119, 27, 27, 0.3);
+      height:40px;
+      font-size:24px;
     }
 
     .senha-container {
@@ -88,6 +95,11 @@
 	<main>
 	<section>
 		<div class="container">
+		<% String mensagemErro = (String) request.getAttribute("mensagemErro"); %>
+		<% if (mensagemErro != null) { %>
+		    <div style="color: red;"><%= mensagemErro %></div>
+		<% } %>
+		
 		 <a href="index.jsp"><button class="back-button">&#8592;</button></a>
 		
 		    <form action="loginRestaurante" method="post">
@@ -99,8 +111,10 @@
 		        <span class="esqueceu">Esqueceu a senha?</span>
 		      </div>
 		      <input type="password" id="senha" name="senha" required>
-		
+			
+			<div class="cadastro">
 		      <button type="submit" class="botao-entrar">Entrar</button>
+		    </div>
 		    </form>
 		
 		    <div class="cadastro">

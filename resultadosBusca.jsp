@@ -12,14 +12,37 @@
 		<title></title>
 
 		<style>
-        header{
+    	body{
+        	font-family: Arial, sans-serif;
+    
+    	}
+ 		header {
+			position: relative;
 			display: flex;
-			flex-direction: row-reverse;
-			align-items: center;        
-        }
-        
-		.cabecalhoimagem{
-			width: 50px;
+			justify-content: center; /* centraliza o conteúdo horizontalmente */
+			align-items: center;
+			height: 100px; /* ajuste conforme necessário */
+			border-bottom: 1px solid #ccc;
+		}
+		
+		header h1 {
+			margin: 0;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			color: #FFFFFF;
+			font-size: 30px;
+		}
+		
+		.cabecalho {
+			position: absolute;
+			right: 20px;
+			display: flex;
+			gap: 10px;
+		}
+		
+		.cabecalhoimagem {
+			width: 50px; 
 			height: 50px;
 			margin-right: 20px;
 		}
@@ -93,7 +116,10 @@
 </head>
 <body>
 <header>
+	<h1>Mesa pronta</h1>
+
 	<div class="cabecalho">
+		<a href="visualizar_reserva.jsp"><img src="imagens/prato.png"  class="cabecalhoimagem"></a>		
 		<a href="perfilUsuario.jsp"><img src="imagens/perfil.png"  class="cabecalhoimagem"></a>
 		<a href=""><img src="imagens/configuracoes.png" class="cabecalhoimagem"></a>
 	</div>

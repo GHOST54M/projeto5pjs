@@ -31,18 +31,46 @@
 
 
 		<style>
-        header{
+		body{
+       		font-family: Arial, sans-serif; 	
+    
+    	}
+		header {
+			position: relative;
 			display: flex;
-			flex-direction: row-reverse;
-			align-items: center;        
-        }
-        
-		.cabecalhoimagem{
-			width: 50px;
-			height: 50px;
-			margin-right: 20px;
+			justify-content: center; /* centraliza o conteúdo horizontalmente */
+			align-items: center;
+			height: 100px; /* ajuste conforme necessário */
+			border-bottom: 1px solid #ccc;
 		}
 		
+		header h1 {
+			margin: 0;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			color: #FFFFFF;
+			font-size: 30px;
+		}
+		
+		.cabecalho {
+			position: absolute;
+			right: 20px;
+			display: flex;
+			gap: 10px;
+		}
+		
+		.cabecalhoimagem {
+			width: 52px; /* ajuste o tamanho conforme necessário */
+			height: 52px;
+		}
+
+		.container1{
+			display: flex;
+			align-items: center;
+    		justify-content: space-evenly;
+		
+		}
 		.container{
 		    display: flex;
     		justify-content: space-evenly;
@@ -110,6 +138,7 @@
 <body>
 
 <header>
+	<h1>Mesa pronta</h1>
 	<div class="cabecalho">
 		<a href="perfilRestaurante.jsp"><img src="imagens/perfil.png"  class="cabecalhoimagem"></a>
 		<a href=""><img src="imagens/configuracoes.png" class="cabecalhoimagem"></a>
@@ -117,8 +146,9 @@
 </header>
 
 <main>
-
+<section class="container1">
 	<section class="lotacao">
+	
 		<%		
 		    restaurante infoRestaurante = null;
 		
@@ -139,6 +169,10 @@
 	    <% } %>
 	</section>
 	
+	<section class="cardapio">
+		<a href="verificarMenu" class="botao-aceitar">Configurar cardápio</a>
+	</section>
+</section>	
 	<section class="container">
 		<section class="reservas_pendentes">
 			<h1>Reservas solicitadas</h1>
