@@ -29,7 +29,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 	
-		<title>Cadastro VENano</title>
+		<title>Cadastro Mesa Já</title>
     <style>
         body {
             font-family: Arial, sans-serif;

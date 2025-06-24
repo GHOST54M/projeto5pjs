@@ -192,7 +192,7 @@
 </head>
 <body>
 <header>
-	<h1>Mesa pronta</h1>
+	<h1>Mesa Já</h1>
 
 	<div class="cabecalho">
 		<a href="visualizar_reserva.jsp"><img src="imagens/prato.png"  class="cabecalhoimagem"></a>		

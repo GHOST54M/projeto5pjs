@@ -13,7 +13,7 @@
 		<link rel="stylesheet" type="text/css" href="css/reset.css">
 		<link rel="stylesheet" type="text/css" href="css/estilosRepetidos.css">
 	
-		<title>Cadastro VENano</title>
+		<title>Mesa Já</title>
 		<style>
     	body{
        		font-family: Arial, sans-serif; 	
@@ -153,7 +153,7 @@
 <body>
 
 <header>
-	<h1>Mesa pronta</h1>
+	<h1>Mesa Já</h1>
 
 	<div class="cabecalho">
 		<a href="visualizar_reserva.jsp"><img src="imagens/prato.png"  class="cabecalhoimagem"></a>		
